@@ -1,0 +1,13 @@
+/libspecs/
+#/.gitignore
+/.idea/
+.git
+.metadata
+Report/
+Log/
+__pycache__/
+*.html
+*.log
+*.xml
+*.css
+
