@@ -255,7 +255,7 @@ class BrowserAction(CellColor):
         打开右键菜单
         """
         try:
-            return ActionChains(self.driver).context_click(self.find_ele(loc)).perform()
+            ActionChains(self.driver).context_click(loc).perform()
         except:
             # log.exception(traceback.format_exc())
             raise
