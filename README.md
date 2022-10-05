@@ -46,8 +46,8 @@ functools
 3.conf.ini:配置文件：地址、数据管理
 4.main.py：核心文件，主要用于串跑和发送请求、读取excel表，浏览器页面操作，截图及对比等方法
 5.tool.py:内部调用的工具，写入log，读取ini文件，excel表读取、写入方法，系统操作方法
-5.fcs_review_run.py: fcs_convert():参数接口转换  get_except_screen_shoot():打开预览链接后，进行期望截  图  result_run():进行实际截图，并进行对比
-6.fcs_rerun.py:可填入fcs结果表，rerun错误的测试用例
+5.fcs_convert.py: convert_run():参数接口转换  convert_rerun():参数接口转换失败后的用例重跑
+6.case_run.py:执行所有测试用例，并产生html测试报告
 ```
 
 
