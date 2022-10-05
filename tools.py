@@ -10,7 +10,6 @@ import math
 import operator
 from functools import reduce
 
-
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%m/%d/%Y %H:%M:%S %p"
 logging.basicConfig(filename='critical.log', level=logging.CRITICAL, format=LOG_FORMAT, datefmt=DATE_FORMAT)
@@ -86,6 +85,14 @@ def copy_test_excel(proj, case_excel):
 def get_case_sheet_name(folder, case_excel):
     sheet_names = []
     book = load_workbook(os.path.join(folder, case_excel), read_only=True)
+    for sheet_name in book.sheetnames:
+        sheet_names.append(sheet_name)
+    return sheet_names
+
+
+def get_sheet_name(fcs_result_p):
+    sheet_names = []
+    book = load_workbook(os.path.join(fcs_result_p), read_only=True)
     for sheet_name in book.sheetnames:
         sheet_names.append(sheet_name)
     return sheet_names
