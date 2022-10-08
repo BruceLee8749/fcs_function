@@ -14,7 +14,7 @@ fcs_result_path = pro_path + "/" + path
 class TestCase:
 
     def test_convert61_001(self):
-        """参数convertTimeOut为60s，转换超时时间60s"""
+        """参数convertTimeOut为转换超时时间"""
         data1 = eval(get_cell(fcs_result_path, 2, 4, "Sheet61-ppt"))
         data2 = eval(get_cell(fcs_result_path, 2, 6, 'Sheet61-ppt'))
         set_time = data1["convertTimeOut"]  # 设置转换的超时时间，秒
@@ -45,7 +45,7 @@ class TestCase:
         data = eval(get_cell(fcs_result_path, 4, 4, 'Sheet61-ppt'))
         html_name = data['htmlName']  # 转换后的预期标题名称
         driver.open_bro(url)
-        name = driver.get_text("//*[@class='title']")  # 转换后的实际标题名称
+        name = driver.get_text("//*[@class='title___gzxbE']")  # 转换后的实际标题名称
         assert name == html_name  # 验证转换后的实际标题名称等于预期的
 
     def test_convert61_004(self):
@@ -64,10 +64,11 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 6, 8, 'Sheet61-ppt')
         driver.open_bro(url)
-        driver.open_context_menu(driver.find_ele("//div[@id='root']"))
-        sleep(2)
-        """截图验证"""
-        driver.screenshot_save(6, 'Sheet61-ppt')
+        # driver.open_context_menu(driver.find_ele("//div[@id='root']"))
+        # sleep(2)
+        # """截图验证"""
+        # driver.screenshot_save(6, 'Sheet61-ppt')
+        # 选取文本再做考虑
 
     def test_convert61_006(self):
         """参数isCopy，1防复制，不可以打开右键菜单"""
@@ -118,7 +119,7 @@ class TestCase:
         driver.screenshot_save(10, "Sheet61-ppt")
 
     def test_convert61_010(self):
-        """参数password不加密文档密码正确123456"""
+        """参数password不加密文档"""
         if get_cell(fcs_result_path, 11, 7, "Sheet61-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         data = eval(get_cell(fcs_result_path, 11, 6, 'Sheet61-ppt'))
@@ -162,31 +163,31 @@ class TestCase:
         url = get_cell(fcs_result_path, 15, 8, 'Sheet61-ppt')
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
-        file_name = driver.get_text("//span[@class='title']")  # 获取文件名
+        file_name = driver.get_text("//div[@class='title___gzxbE']")  # 获取文件名
         driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
         driver.click_ele("//img[@title='下载']")
         sleep(2)
         assert (download_file_exist(file_name))  # 验证项目download文件夹下有该文件
 
-    def test_convert61_015(self):
-        """参数is_signature为0，不进入签批模式"""
-        if get_cell(fcs_result_path, 16, 7, "Sheet61-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 16, 8, 'Sheet61-ppt')
-        driver.open_bro(url)
-        driver.ele_not_exist("//img[@title='签批']")  # 验证没有签批按钮存在
-
-    def test_convert61_016(self):
-        """参数is_signature为1，进入签批模式"""
-        if get_cell(fcs_result_path, 17, 7, "Sheet61-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 17, 8, 'Sheet61-ppt')
-        driver.open_bro(url)
-        driver.ele_exist("//img[@title='签批']")  # 验证有签批按钮存在
-        driver.click_ele("//img[@title='签批']")  # 点击签批按钮
-        sleep(1)
-        """截图验证"""
-        driver.screenshot_save(17, 'Sheet61-ppt')
+    # def test_convert61_015(self):
+    #     """参数is_signature为0，不进入签批模式"""
+    #     if get_cell(fcs_result_path, 16, 7, "Sheet61-ppt") != '通过':
+    #         pytest.skip("url转换失败,不执行该case")
+    #     url = get_cell(fcs_result_path, 16, 8, 'Sheet61-ppt')
+    #     driver.open_bro(url)
+    #     driver.ele_not_exist("//img[@title='签批']")  # 验证没有签批按钮存在
+    #
+    # def test_convert61_016(self):
+    #     """参数is_signature为1，进入签批模式"""
+    #     if get_cell(fcs_result_path, 17, 7, "Sheet61-ppt") != '通过':
+    #         pytest.skip("url转换失败,不执行该case")
+    #     url = get_cell(fcs_result_path, 17, 8, 'Sheet61-ppt')
+    #     driver.open_bro(url)
+    #     driver.ele_exist("//img[@title='签批']")  # 验证有签批按钮存在
+    #     driver.click_ele("//img[@title='签批']")  # 点击签批按钮
+    #     sleep(1)
+    #     """截图验证"""
+    #     driver.screenshot_save(17, 'Sheet61-ppt')
 
     def test_convert61_017(self):
         """参数isHeaderBar为0，不显示头部导航栏"""
@@ -194,7 +195,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 18, 8, 'Sheet61-ppt')
         driver.open_bro(url)
-        driver.ele_not_exist("//div[@id='header']")  # 验证头部导航栏这个元素不存在
+        driver.ele_not_exist("//div[@class='header___SZA6f']")  # 验证头部导航栏这个元素不存在
 
     def test_convert61_018(self):
         """参数isHeaderBar为1，显示头部导航栏"""
@@ -202,7 +203,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 19, 8, 'Sheet61-ppt')
         driver.open_bro(url)
-        driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素存在
+        driver.ele_exist("//div[@class='header___SZA6f']")  # 验证头部导航栏这个元素存在
 
     def test_convert61_019(self):
         """num参数为0，预览次数不限"""

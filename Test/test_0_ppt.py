@@ -13,7 +13,7 @@ fcs_result_path = pro_path + "/" + path
 class TestCase:
 
     def test_convert0_001(self):
-        """参数convertTimeOut为60s，转换超时时间60s"""
+        """参数convertTimeOut转换超时时间"""
         data1 = eval(get_cell(fcs_result_path, 2, 4, "Sheet0-ppt"))
         data2 = eval(get_cell(fcs_result_path, 2, 6, 'Sheet0-ppt'))
         set_time = data1["convertTimeOut"]  # 设置转换的超时时间，秒
@@ -148,17 +148,17 @@ class TestCase:
 
     def test_convert0_013(self):
         """参数download，参数为0，不显示源文档下载按钮"""
-        if get_cell(fcs_result_path, 18, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 14, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 18, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 14, 8, 'Sheet0-ppt')
         driver.open_bro(url)
         driver.ele_not_exist("//img[@title='下载']")  # 验证参数为0时，没有“下载”按钮存在
 
     def test_convert0_014(self):
         """参数download，参数为1，显示源文档下载按钮,点击下载后，验证项目download文件夹下有该文件"""
-        if get_cell(fcs_result_path, 19, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 15, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 19, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 15, 8, 'Sheet0-ppt')
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
         file_name = driver.get_text("//span[@class='title']")  # 获取文件名
@@ -167,48 +167,47 @@ class TestCase:
         sleep(2)
         assert (download_file_exist(file_name))  # 验证项目download文件夹下有该文件
 
-    def test_convert0_015(self):
-        """参数is_signature为0，不进入签批模式"""
-        if get_cell(fcs_result_path, 21, 7, "Sheet0-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 21, 8, 'Sheet0-ppt')
-        driver.open_bro(url)
-        driver.ele_not_exist("//img[@title='签批']")  # 验证没有签批按钮存在
-
+    # def test_convert0_015(self):
+    #     """参数is_signature为0，不进入签批模式"""
+    #     if get_cell(fcs_result_path, 16, 7, "Sheet0-ppt") != '通过':
+    #         pytest.skip("url转换失败,不执行该case")
+    #     url = get_cell(fcs_result_path, 16, 8, 'Sheet0-ppt')
+    #     driver.open_bro(url)
+    #     driver.ele_not_exist("//img[@title='签批']")  # 验证没有签批按钮存在
+    #
     # def test_convert0_016(self):
     #     """参数is_signature为1，进入签批模式"""
-    #     if get_cell(fcs_result_path, 22, 7, "Sheet0-ppt") != '通过':
+    #     if get_cell(fcs_result_path, 17, 7, "Sheet0-ppt") != '通过':
     #         pytest.skip("url转换失败,不执行该case")
-    #     url = get_cell(fcs_result_path, 22, 8, 'Sheet0-ppt')
+    #     url = get_cell(fcs_result_path, 17, 8, 'Sheet0-ppt')
     #     driver.open_bro(url)
     #     sleep(10)
     #     driver.ele_exist("//img[@title='签批']")  # 验证有签批按钮存在
     #     driver.click_ele("//img[@title='签批']")  # 点击签批按钮
     #     """截图验证"""
-    #     driver.screenshot_save(22, 'Sheet0-ppt')
-    #用例对应错误
+    #     driver.screenshot_save(21, 'Sheet0-ppt')
 
     def test_convert0_017(self):
         """参数isHeaderBar为0，不显示头部导航栏"""
-        if get_cell(fcs_result_path, 23, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 18, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 23, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 18, 8, 'Sheet0-ppt')
         driver.open_bro(url)
         driver.ele_not_exist("//div[@id='header']")  # 验证头部导航栏这个元素不存在
 
     def test_convert0_018(self):
         """参数isHeaderBar为1，显示头部导航栏"""
-        if get_cell(fcs_result_path, 24, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 19, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 24, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 19, 8, 'Sheet0-ppt')
         driver.open_bro(url)
         driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素存在
 
     def test_convert0_019(self):
         """num参数为0，预览次数不限"""
-        if get_cell(fcs_result_path, 25, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 20, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 25, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 20, 8, 'Sheet0-ppt')
         for i in range(1, 5):
             """预览url，打开4次，验证能否打开成功"""
             driver.open_bro(url)
@@ -217,9 +216,9 @@ class TestCase:
 
     def test_convert0_020(self):
         """num参数为3，打开预览超过3次不支持预览"""
-        if get_cell(fcs_result_path, 26, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 21, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 26, 8, 'Sheet0-ppt')
+        url = get_cell(fcs_result_path, 21, 8, 'Sheet0-ppt')
         for i in range(1, 5):
             """预览url打开小于等于3次，验证能否打开成功"""
             driver.open_bro(url)
@@ -232,10 +231,10 @@ class TestCase:
 
     def test_convert0_021(self):
         """"time参数为预览过期时间，打开预览time秒后，刷新页面，显示链接过期"""
-        if get_cell(fcs_result_path, 27, 7, "Sheet0-ppt") != '通过':
+        if get_cell(fcs_result_path, 22, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 27, 8, 'Sheet0-ppt')
-        data = eval(get_cell(fcs_result_path, 27, 4, 'Sheet0-ppt'))
+        url = get_cell(fcs_result_path, 22, 8, 'Sheet0-ppt')
+        data = eval(get_cell(fcs_result_path, 22, 4, 'Sheet0-ppt'))
         time_num = int(data["time"])  # 获取time数据,并转换成int类型
         driver.open_bro(url)
         driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
@@ -246,24 +245,51 @@ class TestCase:
 
     def test_convert0_022(self):
         """参数show_hide_slide为0，不显示隐藏幻灯片页"""
-        if get_cell(fcs_result_path, 28, 7, "Sheet0") != '通过':
+        if get_cell(fcs_result_path, 23, 7, "Sheet0") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 28, 8, 'Sheet0')
+        url = get_cell(fcs_result_path, 23, 8, 'Sheet0')
         driver.open_bro(url)
         total_page = int(driver.get_text("//*[@class='totalPage']"))  # 实际转换的幻灯片页数
         assert total_page == 3  # 此处数据应根据实际幻灯片张数来填写，num=源文档幻灯片总张数-隐藏的幻灯片张数
 
     def test_convert0_023(self):
         """参数show_hide_slide为1，显示隐藏幻灯片页"""
-        if get_cell(fcs_result_path, 29, 7, "Sheet0") != '通过':
+        if get_cell(fcs_result_path, 24, 7, "Sheet0") != '通过':
             pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 29, 8, 'Sheet0')
+        url = get_cell(fcs_result_path, 24, 8, 'Sheet0')
         driver.open_bro(url)
         total_page = int(driver.get_text("//*[@class='totalPage']"))  # 实际转换的幻灯片页数
         assert total_page == 4  # 此处数据应根据实际幻灯片张数来填写，num=源文档幻灯片总张数
 
     def test_convert0_024(self):
         """参数zoom为0.2f显示备注"""
+        if get_cell(fcs_result_path, 25, 7, "Sheet0-ppt") != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 25, 8, 'Sheet0-ppt')
+        driver.open_bro(url)
+        """截图验证"""
+        driver.screenshot_save(25, 'Sheet0-ppt')
+
+    def test_convert0_025(self):
+        """参数zoom为2f显示备注"""
+        if get_cell(fcs_result_path, 26, 7, "Sheet0-ppt") != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 26, 8, 'Sheet0-ppt')
+        driver.open_bro(url)
+        """截图验证"""
+        driver.screenshot_save(26, 'Sheet0-ppt')
+
+    def test_convert0_026(self):
+        """参数wmContent显示水印内容"""
+        if get_cell(fcs_result_path, 27, 7, "Sheet0-ppt") != '通过':
+            pytest.skip("url转换失败,不执行该case")
+        url = get_cell(fcs_result_path, 27, 8, 'Sheet0-ppt')
+        driver.open_bro(url)
+        """截图验证"""
+        driver.screenshot_save(27, 'Sheet0-ppt')
+
+    def test_convert0_027(self):
+        """参数wmSize为10"""
         if get_cell(fcs_result_path, 28, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 28, 8, 'Sheet0-ppt')
@@ -271,8 +297,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(28, 'Sheet0-ppt')
 
-    def test_convert0_025(self):
-        """参数zoom为2f显示备注"""
+    def test_convert0_028(self):
+        """参数wmSize为30"""
         if get_cell(fcs_result_path, 29, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 29, 8, 'Sheet0-ppt')
@@ -280,8 +306,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(29, 'Sheet0-ppt')
 
-    def test_convert0_026(self):
-        """参数wmContent显示水印内容"""
+    def test_convert0_029(self):
+        """参数wmColor为#111111"""
         if get_cell(fcs_result_path, 30, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 30, 8, 'Sheet0-ppt')
@@ -289,8 +315,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(30, 'Sheet0-ppt')
 
-    def test_convert0_027(self):
-        """参数wmSize为10"""
+    def test_convert0_030(self):
+        """参数wmFont为微软雅黑"""
         if get_cell(fcs_result_path, 31, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 31, 8, 'Sheet0-ppt')
@@ -298,8 +324,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(31, 'Sheet0-ppt')
 
-    def test_convert0_028(self):
-        """参数wmSize为30"""
+    def test_convert0_031(self):
+        """参数wmMargin为30，40"""
         if get_cell(fcs_result_path, 32, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 32, 8, 'Sheet0-ppt')
@@ -307,8 +333,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(32, 'Sheet0-ppt')
 
-    def test_convert0_029(self):
-        """参数wmColor为#111111"""
+    def test_convert0_032(self):
+        """参数wmMargin为100，200"""
         if get_cell(fcs_result_path, 33, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 33, 8, 'Sheet0-ppt')
@@ -316,8 +342,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(33, 'Sheet0-ppt')
 
-    def test_convert0_030(self):
-        """参数wmFont为微软雅黑"""
+    def test_convert0_033(self):
+        """参数wmTransparency为0.2"""
         if get_cell(fcs_result_path, 34, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 34, 8, 'Sheet0-ppt')
@@ -325,8 +351,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(34, 'Sheet0-ppt')
 
-    def test_convert0_031(self):
-        """参数wmMargin为30，40"""
+    def test_convert0_034(self):
+        """参数wmTransparency为0"""
         if get_cell(fcs_result_path, 35, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 35, 8, 'Sheet0-ppt')
@@ -334,8 +360,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(35, 'Sheet0-ppt')
 
-    def test_convert0_032(self):
-        """参数wmMargin为100，200"""
+    def test_convert0_035(self):
+        """参数wmTransparency为1"""
         if get_cell(fcs_result_path, 36, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 36, 8, 'Sheet0-ppt')
@@ -343,8 +369,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(36, 'Sheet0-ppt')
 
-    def test_convert0_033(self):
-        """参数wmTransparency为0.2"""
+    def test_convert0_036(self):
+        """参数wmRotate为90"""
         if get_cell(fcs_result_path, 37, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 37, 8, 'Sheet0-ppt')
@@ -352,8 +378,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(37, 'Sheet0-ppt')
 
-    def test_convert0_034(self):
-        """参数wmTransparency为0"""
+    def test_convert0_037(self):
+        """参数wmRotate为45"""
         if get_cell(fcs_result_path, 38, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 38, 8, 'Sheet0-ppt')
@@ -361,8 +387,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(38, 'Sheet0-ppt')
 
-    def test_convert0_035(self):
-        """参数wmTransparency为1"""
+    def test_convert0_038(self):
+        """参数"wmPosition为1,1"""
         if get_cell(fcs_result_path, 39, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 39, 8, 'Sheet0-ppt')
@@ -370,8 +396,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(39, 'Sheet0-ppt')
 
-    def test_convert0_036(self):
-        """参数wmRotate为90"""
+    def test_convert0_039(self):
+        """参数"wmPosition为300,400"""
         if get_cell(fcs_result_path, 40, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 40, 8, 'Sheet0-ppt')
@@ -379,35 +405,38 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(40, 'Sheet0-ppt')
 
-    def test_convert0_037(self):
-        """参数wmRotate为45"""
+    def test_convert0_040(self):
+        """参数wmPicPath"""
         if get_cell(fcs_result_path, 41, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 41, 8, 'Sheet0-ppt')
         driver.open_bro(url)
+        sleep(10)
         """截图验证"""
         driver.screenshot_save(41, 'Sheet0-ppt')
 
-    def test_convert0_038(self):
-        """参数"wmPosition为1,1"""
+    def test_convert0_041(self):
+        """参数wmPicSize为10"""
         if get_cell(fcs_result_path, 42, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 42, 8, 'Sheet0-ppt')
         driver.open_bro(url)
+        sleep(10)
         """截图验证"""
         driver.screenshot_save(42, 'Sheet0-ppt')
 
-    def test_convert0_039(self):
-        """参数"wmPosition为300,400"""
+    def test_convert0_042(self):
+        """参数wmMargin为30，40"""
         if get_cell(fcs_result_path, 43, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 43, 8, 'Sheet0-ppt')
         driver.open_bro(url)
+        sleep(10)
         """截图验证"""
         driver.screenshot_save(43, 'Sheet0-ppt')
 
-    def test_convert0_040(self):
-        """参数wmPicPath"""
+    def test_convert0_043(self):
+        """参数wmMargin为100，200"""
         if get_cell(fcs_result_path, 44, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 44, 8, 'Sheet0-ppt')
@@ -416,8 +445,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(44, 'Sheet0-ppt')
 
-    def test_convert0_041(self):
-        """参数wmPicSize为10"""
+    def test_convert0_044(self):
+        """参数wmTransparency为0.2"""
         if get_cell(fcs_result_path, 45, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 45, 8, 'Sheet0-ppt')
@@ -426,8 +455,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(45, 'Sheet0-ppt')
 
-    def test_convert0_042(self):
-        """参数wmMargin为30，40"""
+    def test_convert0_045(self):
+        """参数wmTransparency为0"""
         if get_cell(fcs_result_path, 46, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 46, 8, 'Sheet0-ppt')
@@ -436,8 +465,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(46, 'Sheet0-ppt')
 
-    def test_convert0_043(self):
-        """参数wmMargin为100，200"""
+    def test_convert0_046(self):
+        """参数wmTransparency为1"""
         if get_cell(fcs_result_path, 47, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 47, 8, 'Sheet0-ppt')
@@ -446,8 +475,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(47, 'Sheet0-ppt')
 
-    def test_convert0_044(self):
-        """参数wmTransparency为0.2"""
+    def test_convert0_047(self):
+        """参数wmRotate为45"""
         if get_cell(fcs_result_path, 48, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 48, 8, 'Sheet0-ppt')
@@ -456,8 +485,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(48, 'Sheet0-ppt')
 
-    def test_convert0_045(self):
-        """参数wmTransparency为0"""
+    def test_convert0_048(self):
+        """参数wmRotate为90"""
         if get_cell(fcs_result_path, 49, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 49, 8, 'Sheet0-ppt')
@@ -466,8 +495,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(49, 'Sheet0-ppt')
 
-    def test_convert0_046(self):
-        """参数wmTransparency为1"""
+    def test_convert0_049(self):
+        """参数wmPosition为1，1"""
         if get_cell(fcs_result_path, 50, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 50, 8, 'Sheet0-ppt')
@@ -476,8 +505,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(50, 'Sheet0-ppt')
 
-    def test_convert0_047(self):
-        """参数wmRotate为45"""
+    def test_convert0_050(self):
+        """参数wmPosition为300，400"""
         if get_cell(fcs_result_path, 51, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 51, 8, 'Sheet0-ppt')
@@ -486,8 +515,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(51, 'Sheet0-ppt')
 
-    def test_convert0_048(self):
-        """参数wmRotate为90"""
+    def test_convert0_051(self):
+        """水印内容组合"""
         if get_cell(fcs_result_path, 52, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 52, 8, 'Sheet0-ppt')
@@ -496,8 +525,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(52, 'Sheet0-ppt')
 
-    def test_convert0_049(self):
-        """参数wmPosition为1，1"""
+    def test_convert0_052(self):
+        """图片水印组合"""
         if get_cell(fcs_result_path, 53, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 53, 8, 'Sheet0-ppt')
@@ -506,8 +535,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(53, 'Sheet0-ppt')
 
-    def test_convert0_050(self):
-        """参数wmPosition为300，400"""
+    def test_convert0_053(self):
+        """无水印内容组合"""
         if get_cell(fcs_result_path, 54, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 54, 8, 'Sheet0-ppt')
@@ -516,8 +545,8 @@ class TestCase:
         """截图验证"""
         driver.screenshot_save(54, 'Sheet0-ppt')
 
-    def test_convert0_051(self):
-        """水印内容组合"""
+    def test_convert0_054(self):
+        """无图片水印组合"""
         if get_cell(fcs_result_path, 55, 7, "Sheet0-ppt") != '通过':
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 55, 8, 'Sheet0-ppt')
@@ -525,33 +554,3 @@ class TestCase:
         sleep(10)
         """截图验证"""
         driver.screenshot_save(55, 'Sheet0-ppt')
-
-    def test_convert0_052(self):
-        """图片水印组合"""
-        if get_cell(fcs_result_path, 56, 7, "Sheet0-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 56, 8, 'Sheet0-ppt')
-        driver.open_bro(url)
-        sleep(10)
-        """截图验证"""
-        driver.screenshot_save(56, 'Sheet0-ppt')
-
-    def test_convert0_053(self):
-        """无水印内容组合"""
-        if get_cell(fcs_result_path, 57, 7, "Sheet0-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 57, 8, 'Sheet0-ppt')
-        driver.open_bro(url)
-        sleep(10)
-        """截图验证"""
-        driver.screenshot_save(57, 'Sheet0-ppt')
-
-    def test_convert0_054(self):
-        """无图片水印组合"""
-        if get_cell(fcs_result_path, 58, 7, "Sheet0-ppt") != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 58, 8, 'Sheet0-ppt')
-        driver.open_bro(url)
-        sleep(10)
-        """截图验证"""
-        driver.screenshot_save(58, 'Sheet0-ppt')

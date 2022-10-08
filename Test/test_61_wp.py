@@ -45,7 +45,7 @@ class TestCase:
         data = eval(get_cell(fcs_result_path, 4, 4, 'Sheet61-wp'))
         html_name = data['htmlName']  # 转换后的预期标题名称
         driver.open_bro(url)
-        name = driver.get_text("//*[@class='title']")  # 转换后的实际标题名称
+        name = driver.get_text("//*[@class='title___gzxbE']")  # 转换后的实际标题名称
         assert name == html_name  # 验证转换后的实际标题名称等于预期的
 
     def test_convert61_004(self):
@@ -68,6 +68,8 @@ class TestCase:
         sleep(2)
         """截图验证"""
         driver.screenshot_save(6, 'Sheet61-wp')
+        sleep(1)
+        driver.driver.refresh()
 
     def test_convert61_006(self):
         """参数isCopy，1防复制，不可以打开右键菜单"""
@@ -158,6 +160,7 @@ class TestCase:
         sleep(2)
         """截图验证"""
         driver.screenshot_save(14, 'Sheet61-wp')
+        # 该文档建议设置目录
 
     def test_convert61_014(self):
         """参数isShowList，参数为0不展示文档目录"""
@@ -166,6 +169,7 @@ class TestCase:
         url = get_cell(fcs_result_path, 15, 8, 'Sheet61-wp')
         driver.open_bro(url)
         driver.ele_not_exist("//img[@title='目录']")  # 验证参数为0时，没有“目录”按钮存在
+        # 该文档建议设置目录
 
     def test_convert61_0015(self):
         """参数acceptTracks，参数为0，显示不文档批注"""
@@ -174,6 +178,7 @@ class TestCase:
         url = get_cell(fcs_result_path, 16, 8, 'Sheet61-wp')
         driver.open_bro(url)
         driver.screenshot_save(16, 'Sheet61-wp')
+        # 该文档建议设置批注
 
     def test_convert61_016(self):
         """参数acceptTracks，参数为1，显示文档批注"""
@@ -182,6 +187,7 @@ class TestCase:
         url = get_cell(fcs_result_path, 17, 8, 'Sheet61-wp')
         driver.open_bro(url)
         driver.screenshot_save(17, 'Sheet61-wp')
+        # 该文档建议设置批注
 
     def test_convert61_017(self):
         """参数download，参数为0，不显示源文档下载按钮"""
@@ -198,7 +204,8 @@ class TestCase:
         url = get_cell(fcs_result_path, 19, 8, 'Sheet61-wp')
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
-        file_name = driver.get_text("//span[@class='title']")  # 获取文件名
+        file_name = driver.get_text("//div[@class='title___gzxbE']")  # 获取文件名
+        print(file_name)
         driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
         driver.click_ele("//img[@title='下载']")
         sleep(2)
@@ -212,6 +219,7 @@ class TestCase:
         driver.open_bro(url)
         """截图验证"""
         driver.screenshot_save(20, 'Sheet61-wp')
+        # 文档不对应
 
     def test_convert61_020(self):
         """参数is_signature为0，不进入签批模式"""
