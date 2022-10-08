@@ -211,6 +211,7 @@ class BrowserAction(CellColor):
                 sheet.cell(row_num, 12, 'pass')  # 对比值等于0，则标记pass
                 sheet.cell(row_num, 12).fill = self.fill_green  # 正确结果结果标记绿色
             workbook.save(file_path)  # 保存结果表
+            return result
         else:
             self.capture_image_function(ex_image_path)  # 如果不存在，将截图放入期望截图文件夹中
             sheet.cell(row_num, 10, str(case_id) + '.png').hyperlink = ex_image_path  # 以超链接格式写入结果表对应的单元格中

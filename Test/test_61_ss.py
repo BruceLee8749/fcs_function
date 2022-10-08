@@ -153,7 +153,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 14, 8, 'Sheet61-ss')
         driver.open_bro(url)
-        assert not driver.ele_exist("//img[@title='下载']")  # 验证参数为0时，没有“下载”按钮存在
+        driver.ele_not_exist("//img[@title='下载']")  # 验证参数为0时，没有“下载”按钮存在
 
     def test_convert61_014(self):
         """参数isdownload，参数为1，显示源文档下载按钮,点击下载后，验证项目download文件夹下有该文件"""
@@ -163,7 +163,7 @@ class TestCase:
         driver.open_bro(url)
         del_download_file()  # 删除下载目录,重新新建
         file_name = driver.get_text("//span[@class='title']")  # 获取文件名
-        assert driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
+        driver.ele_exist("//img[@title='下载']")  # 验证参数为1时，有“下载”按钮存在
         driver.click_ele("//img[@title='下载']")
         sleep(2)
         assert (download_file_exist(file_name))  # 验证项目download文件夹下有该文件
@@ -174,7 +174,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 16, 8, 'Sheet61-ss')
         driver.open_bro(url)
-        assert not driver.ele_exist("//img[@title='签批']")  # 验证没有签批按钮存在
+        driver.ele_not_exist("//img[@title='签批']")  # 验证没有签批按钮存在
 
     def test_convert61_016(self):
         """参数is_signature为1，进入签批模式"""
@@ -182,7 +182,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 17, 8, 'Sheet61-ss')
         driver.open_bro(url)
-        assert driver.ele_exist("//img[@title='签批']")  # 验证有签批按钮存在
+        driver.ele_exist("//img[@title='签批']")  # 验证有签批按钮存在
         driver.click_ele("//img[@title='签批']")  # 点击签批按钮
         sleep(1)
         """截图验证"""
@@ -194,7 +194,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 18, 8, 'Sheet61-ss')
         driver.open_bro(url)
-        assert not driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素不存在
+        driver.ele_not_exist("//div[@id='header']")  # 验证头部导航栏这个元素不存在
 
     def test_convert61_018(self):
         """参数isHeaderBar为1，显示头部导航栏"""
@@ -202,7 +202,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 19, 8, 'Sheet61-ss')
         driver.open_bro(url)
-        assert driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素存在
+        driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素存在
 
     def test_convert61_019(self):
         """num参数为0，预览次数不限"""
@@ -212,7 +212,7 @@ class TestCase:
         for i in range(1, 5):
             """预览url，打开4次，验证能否打开成功"""
             driver.open_bro(url)
-            assert driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
+            driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
             i += 1
 
     def test_convert61_020(self):
@@ -224,7 +224,7 @@ class TestCase:
             """预览url打开小于等于3次，验证能否打开成功"""
             driver.open_bro(url)
             if i <= 3:
-                assert driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
+                driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
             else:
                 data = json.loads(driver.get_text("//pre"))
                 assert data['message'] == '链接已过期'
@@ -238,7 +238,7 @@ class TestCase:
         data = eval(get_cell(fcs_result_path, 22, 4, 'Sheet61-ss'))
         time_num = int(data["time"])  # 获取time数据,并转换成int类型
         driver.open_bro(url)
-        assert driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
+        driver.ele_exist("//div[@id='root']")  # 验证主体栏存在
         sleep(time_num)  # 预览打开time_num秒后自动刷新网页
         driver.open_bro(url)
         data = json.loads(driver.get_text("//pre"))
