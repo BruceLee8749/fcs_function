@@ -142,14 +142,14 @@ def get_max_row(file_path, sheet_name):
     return max_num
 
 
-def get_result(file_path, row_num, sheet_name='Sheet1'):
+def get_result(file_path, row_num, sheet_name):
     workbook = load_workbook(file_path)
     sheet = workbook[sheet_name]
     result = sheet.cell(row=row_num, column=7).value
     return result
 
 
-def set_cell(file_path, row_num, value, sheet_name='Sheet1'):
+def set_cell(file_path, row_num, value, sheet_name):
     workbook = load_workbook(file_path)
     sheet = workbook[sheet_name]
     sheet.cell(row=row_num, column=12, value=value)
