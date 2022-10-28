@@ -8,7 +8,7 @@ driver = BrowserAction()
 pro_path = os.path.dirname(os.path.dirname(__file__))
 path = get_conf('FCS', '测试结果文件夹')
 fcs_result_path = pro_path + "/" + path
-sheet_name = "Sheet61_ppt"
+sheet_name = "Sheet0-ppt"
 
 
 class TestCase:
