@@ -248,7 +248,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 23, 8, sheet_name)
         driver.open_bro(url)
-        driver.ele_not_exist("//div[@id='header']")  # 验证头部导航栏这个元素不存在
+        driver.ele_not_exist("//div[@class='header___SZA6f']")  # 验证头部导航栏这个元素不存在
 
     def test_convert61_023(self):
         """参数isHeaderBar为1，显示头部导航栏"""
@@ -256,7 +256,7 @@ class TestCase:
             pytest.skip("url转换失败,不执行该case")
         url = get_cell(fcs_result_path, 24, 8, sheet_name)
         driver.open_bro(url)
-        driver.ele_exist("//div[@id='header']")  # 验证头部导航栏这个元素存在
+        driver.ele_exist("//div[@class='header___SZA6f']")  # 验证头部导航栏这个元素存在
 
     def test_convert61_024(self):
         """num参数为0，预览次数不限"""
