@@ -108,17 +108,17 @@ class TestCase:
     #     driver.screenshot_save(9, sheet_name)
     #   excle文件好像不能转页码
 
-    def test_convert61_009(self):
-        """参数page,pageStart，pageEnd组合"""
-        if get_cell(fcs_result_path, 10, 7, sheet_name) != '通过':
-            pytest.skip("url转换失败,不执行该case")
-        url = get_cell(fcs_result_path, 10, 8, sheet_name)
-        driver.open_bro(url)
-        total_page = int(driver.get_text("//*[@class='totalPage']"))  # 实际共转换的页数
-        assert 1 == total_page  # 验证只转1页
-        """截图验证"""
-        driver.screenshot_save(10, sheet_name)
-        #   excle文件好像不能转页码
+    # def test_convert61_009(self):
+    #     """参数page,pageStart，pageEnd组合"""
+    #     if get_cell(fcs_result_path, 10, 7, sheet_name) != '通过':
+    #         pytest.skip("url转换失败,不执行该case")
+    #     url = get_cell(fcs_result_path, 10, 8, sheet_name)
+    #     driver.open_bro(url)
+    #     total_page = int(driver.get_text("//*[@class='totalPage']"))  # 实际共转换的页数
+    #     assert 1 == total_page  # 验证只转1页
+    #     """截图验证"""
+    #     driver.screenshot_save(10, sheet_name)
+    #     #   excle文件好像不能转页码
 
     def test_convert61_010(self):
         """参数password不加密文档密码正确123456"""
@@ -191,7 +191,7 @@ class TestCase:
     #     sleep(1)
     #     """截图验证"""
     #     driver.screenshot_save(17, sheet_name)
-    # 确认excel文件是否有签批功能
+    # # 确认excel文件是否有签批功能
 
     def test_convert61_017(self):
         """参数isHeaderBar为0，不显示头部导航栏"""
