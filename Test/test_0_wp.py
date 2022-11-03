@@ -159,7 +159,7 @@ class TestCase:
         driver.click_ele("//img[@title='目录']")  # 点击“目录”按钮
         sleep(2)
         """截图验证"""
-        assert driver.screenshot_save(14, sheet_name) == 0
+        driver.screenshot_save(14, sheet_name)
 
     def test_convert0_014(self):
         """参数isShowList，参数为0不展示文档目录"""
@@ -434,7 +434,7 @@ class TestCase:
         driver.open_bro(url)
         """截图验证"""
         # driver.screenshot_save(43, sheet_name)
-        assert driver.screenshot_save(43, sheet_name) == 0
+        driver.screenshot_save(43, sheet_name)
 
     def test_convert0_043(self):
         """参数wmPicPath"""

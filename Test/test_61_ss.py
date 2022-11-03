@@ -483,7 +483,7 @@ class TestCase:
         driver.open_bro(url)
         sleep(10)
         """截图验证"""
-        driver.screenshot_save(46, sheet_name)
+        driver.screenshot_save(47, sheet_name)
 
     def test_convert61_047(self):
         """水印内容组合"""
