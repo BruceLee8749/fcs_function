@@ -12,3 +12,10 @@ for key, value in dict.items():
 abs = os.path.abspath('ceshi.py')
 print("打印文件的绝对路径，给个相对路径也能打印：", abs)
 print("输入当前文件路径：", os.path.abspath(__file__))
+
+path = "./"
+ini_list = []
+for filename in os.listdir(path):
+    if filename.endswith('ini'):
+        ini_list.append(filename)
+print(ini_list)
