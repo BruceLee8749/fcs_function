@@ -57,7 +57,7 @@ def get_conf(sec, key):
     config_path = f"{pro_path}/conf.ini"
     if not os.path.exists(config_path):
         cf.add_section('FCS')
-        cf.set('FCS', '接口地址', 'http://192.168.80.116/fcsserver/composite/upload')
+        cf.set('FCS', '接口地址', 'http://172.18.21.54:8080/fcscloud/composite/upload')
         cf.set('FCS', '指定文件', '')
         cf.set('FCS', '指定工作表', '')
         cf.set('FCS', '存放文件夹', '')
