@@ -58,7 +58,6 @@ class Test(CellColor):
                 try:
                     if 'composite' in self.url:
                         convert_url = r_body['data']['viewUrl']  # 获取转换好的url
-
                     else:
                         convert_url = r_body['data']
                     self.write_execl(i, str(r_body), convert_url)  # 把测试结果、responseBody和转换好的url写入结果表
