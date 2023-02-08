@@ -23,7 +23,7 @@ class TestCase:
         if set_time >= convert_time:  # 设置的超时时间大于等于实际转换时间，应该转换成功
             assert result == "操作成功"
         else:  # 设置的超时时间小于实际转换时间，应该转换超时
-            assert result == "转换超时，请调整转换超时时间"
+            assert result == "转换超时，请调整转换超时0时间"
 
     def test_convert0_002(self):
         """参数allowFileSize，允许转换的文件大小，单位M"""

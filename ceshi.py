@@ -46,3 +46,12 @@ jsondict = {
 }
 # python可以直接读取嵌套字典！
 print(jsondict["data"]["viewUrl"])
+# 使用路径拼接时，前面是路径，后面是文件名.否则会出错。
+jpath = os.path.join(r"D:\fcs_function\Test\ceshi1.py", 'ceshi.py')
+js1 = os.path.abspath(__file__)
+js2 = js1 + "/aa/bb/cc.py"
+print("jpath->", jpath)
+print("js2->", js2)
+
+list = [1, 2, 3, 4, 5, 6, 7, 8]
+print("切片操作：", list[:-1])
